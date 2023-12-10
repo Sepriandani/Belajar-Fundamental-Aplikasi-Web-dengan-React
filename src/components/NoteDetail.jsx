@@ -4,19 +4,19 @@ import parser from "html-react-parser";
 import PropTypes from "prop-types";
 
 function NoteDetail({ title, createdAt, body }) {
-    return(
-        <>
-            <h3 className="detail-page__title">{title}</h3>
-            <p className="detail-page__createdAt">{showFormattedDate(createdAt)}</p>
-            <div className="detail-page__body">{parser(body)}</div>
-        </>
-    );
+  return (
+    <>
+      <h3 className="detail-page__title">{title}</h3>
+      <p className="detail-page__createdAt">{showFormattedDate(createdAt)}</p>
+      <div className="detail-page__body">{parser(body)}</div>
+    </>
+  );
 }
 
 NoteDetail.propTypes = {
-    title: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-}
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
 
 export default NoteDetail;

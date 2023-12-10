@@ -5,42 +5,43 @@ import { getArchivedNotes } from "../utils/local-data";
 import ListEmpty from "../components/ListEmpty";
 
 class ArchivesPage extends React.Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props);
+    this.state = {
+      notes: getArchivedNotes(),
+      keyword: props.defaultKeyword || "",
+    };
 
-        this.state = {
-            notes: getArchivedNotes(),
-            keyword: props.defaultKeyword || "",
-        }
+    this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
+  }
 
-        this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
-    }
+  onKeywordChangeHandler(keyword) {
+    this.setState(() => {
+      return {
+        keyword,
+      };
+    });
 
-    onKeywordChangeHandler(keyword) {
-        this.setState(() => {
-            return{
-                keyword
-            };
-        });
+    this.props.keywordChange(keyword);
+  }
 
-        this.props.keywordChange(keyword);
-    }
+  render() {
+    const notes = this.state.notes.filter((note) =>
+      note.title.toLowerCase().includes(this.state.keyword.toLowerCase()),
+    );
 
-    render() {
-
-        const notes = this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.keyword.toLowerCase()));
-
-        return(
-            <section className="archives-page">
-                <h2>Catatan Arsip</h2>
-                <SearchBar keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
-                {
-                    notes.length > 0 ? <NotesList notes={notes} /> : <ListEmpty />
-                }
-            </section>
-        );
-    }
+    return (
+      <section className="archives-page">
+        <h2>Catatan Arsip</h2>
+        <SearchBar
+          keyword={this.state.keyword}
+          keywordChange={this.onKeywordChangeHandler}
+        />
+        {notes.length > 0 ? <NotesList notes={notes} /> : <ListEmpty />}
+      </section>
+    );
+  }
 }
 
 export default ArchivesPage;
