@@ -6,6 +6,7 @@ import ActionButton from "../components/ActionButton";
 import { BiPlus } from "react-icons/bi";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ListEmpty from "../components/ListEmpty";
+import PropTypes from "prop-types";
 
 function HomePageWrapper() {
   const navigate = useNavigate();
@@ -75,5 +76,11 @@ class HomePage extends React.Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  onAddButtonHandler: PropTypes.func.isRequired,
+  defaultKeyword: PropTypes.string.isRequired,
+  keywordChange: PropTypes.func.isRequired,
+};
 
 export default HomePageWrapper;

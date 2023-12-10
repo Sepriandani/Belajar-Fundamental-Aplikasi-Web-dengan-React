@@ -9,6 +9,7 @@ import NoteDetail from "../components/NoteDetail";
 import ActionButton from "../components/ActionButton";
 import { BiArchiveIn, BiArchiveOut, BiTrash } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function DetailPageWrapper() {
   const { id } = useParams();
@@ -95,5 +96,12 @@ class DetailPage extends React.Component {
     );
   }
 }
+
+DetailPage.propTypes = {
+  id: PropTypes.string.isRequired,
+  archiveNoteHandler: PropTypes.func.isRequired,
+  deleteNoteHandler: PropTypes.func.isRequired,
+  unArchiveNoteHandler: PropTypes.func.isRequired,
+};
 
 export default DetailPageWrapper;

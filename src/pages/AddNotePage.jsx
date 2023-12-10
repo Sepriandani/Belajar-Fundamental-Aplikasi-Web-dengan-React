@@ -4,6 +4,7 @@ import ActionButton from "../components/ActionButton";
 import { BiCheck } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { addNote } from "../utils/local-data";
+import PropTypes from "prop-types";
 
 function AddNotePageWrapper() {
   const navigate = useNavigate();
@@ -69,5 +70,9 @@ class AddNotePage extends React.Component {
     );
   }
 }
+
+AddNotePage.propTypes = {
+  saveNoteHandler: PropTypes.func.isRequired,
+};
 
 export default AddNotePageWrapper;
