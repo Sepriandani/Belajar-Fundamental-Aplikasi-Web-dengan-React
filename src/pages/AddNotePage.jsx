@@ -13,7 +13,7 @@ function AddNotePageWrapper() {
         navigate("/");
     }
 
-    return <AddNotePage onClickSaveNoteHandler={saveNoteHandler} />
+    return <AddNotePage saveNoteHandler={saveNoteHandler} />;
 }
 
 class AddNotePage extends React.Component {
@@ -35,20 +35,20 @@ class AddNotePage extends React.Component {
         this.setState(() => {
             return{
                 title: event.target.value,
-            }
+            };
         });
     }
 
     onBodyInputHandler(event) {
         this.setState(() => {
             return{
-                body: event.target.value,
-            }
+                body: event.target.innerHTML,
+            };
         });
     }
 
     onClickSaveButtonHandler() {
-        this.props.onSaveNoteHandler(this.state);
+        this.props.saveNoteHandler(this.state);
     }
 
     render() {
@@ -60,11 +60,15 @@ class AddNotePage extends React.Component {
                     onBodyInput={this.onBodyInputHandler}
                 />
                 <div className="add-new-page__action">
-                    <ActionButton title="Simpan" icon={<BiCheck />} onClick={this.onClickSaveButtonHandler} />
+                    <ActionButton
+                        title="Simpan" 
+                        icon={<BiCheck />} 
+                        onClick={this.onClickSaveButtonHandler} 
+                    />
                 </div>
             </section>
         );
     }
 }
 
-export default AddNotePage;
+export default AddNotePageWrapper;

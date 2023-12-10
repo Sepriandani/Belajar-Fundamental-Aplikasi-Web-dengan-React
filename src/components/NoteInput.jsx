@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function NoteInput({ state, onTitleChange, onBodyInput }) {
     return(
@@ -11,13 +12,19 @@ function NoteInput({ state, onTitleChange, onBodyInput }) {
                 onChange={onTitleChange}
             />
             <div 
-                className="add-new-page__input_body" 
-                contentEditable="true" 
+                className="add-new-page__input__body" 
                 data-placeholder="Sebenarnya saya adalah ...."
+                contentEditable 
                 onInput={onBodyInput}
             ></div>
         </div>
     );
+}
+
+NoteInput.propTypes = {
+    state: PropTypes.object.isRequired,
+    onTitleChange: PropTypes.func.isRequired,
+    onBodyInput: PropTypes.func.isRequired,
 }
 
 export default NoteInput;
